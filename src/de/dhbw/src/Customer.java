@@ -11,12 +11,12 @@ class Customer {
     private String name;
     private ArrayList<Rental> rentals = new ArrayList<>();
     
-    public Customer(String newname) {
-        name = newname;
+    public Customer(String name) {
+        this.name = name;
     }
     
-    public void addRental(Rental arg) {
-        rentals.add(arg);
+    public void addRental(Rental rental) {
+        rentals.add(rental);
     }
     
     public String getName() {
@@ -31,15 +31,13 @@ class Customer {
         result += C_TAB + "Title" + C_TAB + C_TAB + "Days" + C_TAB + "Amount" + C_LINEBREAK;
         
         for (Rental rental : rentals) {
-        	double rentalAmount = 0;
-        	rentalAmount = amountFor(rental);
-        	frequentRenterPoints ++;
+        	double rentalAmount = amountFor(rental);
+        	frequentRenterPoints++;
         	
         	if (isTwoDayNewReleaseBonus(rental)) {
-        		frequentRenterPoints ++;
+        		frequentRenterPoints++;
         	}
         	
-        	//show figures for this rental
         	result += C_TAB + rental.getMovie().getTitle()+ C_TAB + C_TAB + rental.getDaysRented() + C_TAB + rentalAmount + C_LINEBREAK;
         	totalAmount += rentalAmount;
         };
@@ -59,7 +57,7 @@ class Customer {
             case CHILDREN:
                 return getIncreaseChildren(rental);
         }
-        return -1;
+        return 0;
     }
     
     private double getIncreaseRegular(Rental rental) {
