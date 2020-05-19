@@ -31,8 +31,8 @@ class Customer {
         result += C_TAB + "Title" + C_TAB + C_TAB + "Days" + C_TAB + "Amount" + C_LINEBREAK;
         
         for (Rental rental : rentals) {
-        	double thisAmount = 0;
-        	thisAmount = amountFor(rental);
+        	double rentalAmount = 0;
+        	rentalAmount = amountFor(rental);
         	frequentRenterPoints ++;
         	
         	// add bonus for a two day new release rental
@@ -41,8 +41,8 @@ class Customer {
         	}
         	
         	//show figures for this rental
-        	result += C_TAB + rental.getMovie().getTitle()+ C_TAB + C_TAB + rental.getDaysRented() + C_TAB + String.valueOf(thisAmount) + C_LINEBREAK;
-        	totalAmount += thisAmount;
+        	result += C_TAB + rental.getMovie().getTitle()+ C_TAB + C_TAB + rental.getDaysRented() + C_TAB + String.valueOf(rentalAmount) + C_LINEBREAK;
+        	totalAmount += rentalAmount;
         };
         //add footer lines
         result += "Amount owed is " + String.valueOf(totalAmount) + C_LINEBREAK;
