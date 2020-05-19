@@ -1,6 +1,5 @@
 package de.dhbw.src;
 
-import java.lang.*;
 import java.util.*;
 
 class Customer {
