@@ -35,8 +35,7 @@ class Customer {
         	rentalAmount = amountFor(rental);
         	frequentRenterPoints ++;
         	
-        	// add bonus for a two day new release rental
-        	if ((rental.getMovie().getPriceCode() == PriceCode.NEW_RELEASE) && rental.getDaysRented() > 1) {
+        	if (isTwoDayNewReleaseBonus(rental)) {
         		frequentRenterPoints ++;
         	}
         	
@@ -84,6 +83,10 @@ class Customer {
     		increase += (rental.getDaysRented() - 3) * 1.5;
     	}
     	return increase;
+    }
+    
+    private boolean isTwoDayNewReleaseBonus(Rental rental) {
+    	return (rental.getMovie().getPriceCode() == PriceCode.NEW_RELEASE && rental.getDaysRented() > 1) ? true : false;
     }
     
 }
