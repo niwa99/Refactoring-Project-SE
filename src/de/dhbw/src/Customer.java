@@ -33,7 +33,7 @@ class Customer {
         builder.append(getNewInformationOutputLine("Title", "Days", "Amount"));
         
         for (Rental rental : rentals) {
-        	double rentalAmount = amountFor(rental);
+        	double rentalAmount = getAmountForRental(rental);
         	frequentRenterPoints++;
         	
         	if (isTwoDayNewReleaseBonus(rental)) {
@@ -48,7 +48,7 @@ class Customer {
         return builder.toString();
     }
 
-    private double amountFor(Rental rental) {
+    private double getAmountForRental(Rental rental) {
         
         switch (rental.getMovie().getPriceCode()) {
             case REGULAR:
