@@ -9,32 +9,32 @@ class SituationTest {
 	@Test
 	void createMoviesAndTestItsFunctions() {
 		//arrange
-		Movie movie1 = new Movie("Hangover", Movie.REGULAR);
-		Movie movie2 = new Movie("Hangover 3", Movie.NEW_RELEASE);
+		Movie movie1 = new Movie("Hangover", PriceCode.REGULAR);
+		Movie movie2 = new Movie("Hangover 3", PriceCode.NEW_RELEASE);
 		
 		//act
 		
 		//assert
-		assertTrue(movie1.getPriceCode() == 0);
+		assertTrue(movie1.getPriceCode().asNumber() == 0);
 		assertTrue(movie2.getTitle().equals("Hangover 3"));
 	}
 	
 	@Test
 	void changePricecodeOfAMovieAndCheckItsCorrectness() {
 		//arrange
-		Movie movie1 = new Movie("Testmovie", Movie.REGULAR);
+		Movie movie1 = new Movie("Testmovie", PriceCode.REGULAR);
 		
 		//act
-		movie1.setPriceCode(Movie.CHILDRENS);
+		movie1.setPriceCode(PriceCode.CHILDREN);
 		
 		//assert
-		assertTrue(movie1.getPriceCode() == 2);
+		assertTrue(movie1.getPriceCode().asNumber() == 2);
 	}
 	
 	@Test
 	void checkRentalForCorrectness() {
 		//arrange
-		Movie movie1 = new Movie("Testmovie", Movie.REGULAR);
+		Movie movie1 = new Movie("Testmovie", PriceCode.REGULAR);
 		Rental rental1 = new Rental(movie1, 5);
 		
 		//act
@@ -48,8 +48,8 @@ class SituationTest {
 	void fullSituationTest() {
 		//arrange
 		String result;
-        Movie m1 = new Movie("movie1", 1);
-        Movie m2 = new Movie("movie2", 2);
+        Movie m1 = new Movie("movie1", PriceCode.NEW_RELEASE);
+        Movie m2 = new Movie("movie2", PriceCode.CHILDREN);
         Rental r1 = new Rental(m1, 10);
         Rental r2 = new Rental(m2, 5);
         Customer c1 = new Customer("joe");
