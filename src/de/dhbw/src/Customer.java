@@ -25,10 +25,12 @@ class Customer {
     
     public String getFullInformation() {
     	
+    	StringBuilder builder = new StringBuilder();
         double totalAmount = 0;
         int frequentRenterPoints = 0;
-        String result = "Rental Record for " + this.getName() + C_LINEBREAK;
-        result += C_TAB + "Title" + C_TAB + C_TAB + "Days" + C_TAB + "Amount" + C_LINEBREAK;
+        
+        builder.append(getNewHeaderOutputLine());
+        builder.append(getNewInformationOutputLine("Title", "Days", "Amount"));
         
         for (Rental rental : rentals) {
         	double rentalAmount = amountFor(rental);
@@ -38,13 +40,12 @@ class Customer {
         		frequentRenterPoints++;
         	}
         	
-        	result += C_TAB + rental.getMovie().getTitle()+ C_TAB + C_TAB + rental.getDaysRented() + C_TAB + rentalAmount + C_LINEBREAK;
+        	builder.append(getNewInformationOutputLine(rental.getMovie().getTitle(), rental.getDaysRented(), rentalAmount));
         	totalAmount += rentalAmount;
         };
-        //add footer lines
-        result += "Amount owed is " + totalAmount + C_LINEBREAK;
-        result += "You earned " + frequentRenterPoints + " frequent renter points";
-        return result;
+        
+        builder.append(getNewFooterOutputLines(totalAmount, frequentRenterPoints));
+        return builder.toString();
     }
 
     private double amountFor(Rental rental) {
@@ -85,6 +86,43 @@ class Customer {
     
     private boolean isTwoDayNewReleaseBonus(Rental rental) {
     	return (rental.getMovie().getPriceCode() == PriceCode.NEW_RELEASE && rental.getDaysRented() > 1) ? true : false;
+    }
+    
+    private String getNewInformationOutputLine(String title, int days, double amount) {
+    	return getNewInformationOutputLine(title, String.valueOf(days), String.valueOf(amount));
+    }
+    
+    private String getNewHeaderOutputLine() {
+    	StringBuilder builder = new StringBuilder();
+    	builder.append("Rental Record for ");
+        builder.append(this.getName());
+        builder.append(C_LINEBREAK);
+        return builder.toString();
+    }
+    
+    private String getNewInformationOutputLine(String title, String days, String amount) {
+    	StringBuilder builder = new StringBuilder();
+    	builder.append(C_TAB);
+        builder.append(title);
+        builder.append(C_TAB);
+        builder.append(C_TAB);
+        builder.append(days);
+        builder.append(C_TAB);
+        builder.append(amount);
+        builder.append(C_LINEBREAK);
+        return builder.toString();
+    }
+    
+    private String getNewFooterOutputLines(double totalAmount, int frequentRenterPoints) {
+    	StringBuilder builder = new StringBuilder();
+    	builder.append("Amount owed is ");
+    	builder.append(totalAmount);
+    	builder.append(C_LINEBREAK);
+    	
+    	builder.append("You earned ");
+    	builder.append(frequentRenterPoints);
+    	builder.append(" frequent renter points");
+    	return builder.toString();
     }
     
 }
