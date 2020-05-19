@@ -50,26 +50,39 @@ class Customer {
     }
 
     private double amountFor(Rental rental) {
-    	
-        double amount = 0;
         
         switch (rental.getMovie().getPriceCode()) {
             case REGULAR:
-                amount += 2;
-                if (rental.getDaysRented() > 2) {
-                    amount += (rental.getDaysRented() - 2) * 1.5;
-                }
-                break;
+                return getIncreaseRegular(rental);
             case NEW_RELEASE:
-                amount += rental.getDaysRented() * 3;
-                break;
+                return getIncreaseNewRelease(rental);
             case CHILDREN:
-                amount += 1.5;
-                if (rental.getDaysRented() > 3) {
-                    amount += (rental.getDaysRented() - 3) * 1.5;
-                }
-                break;
+                return getIncreaseChildren(rental);
         }
-        return amount;
+        return -1;
     }
+    
+    private double getIncreaseRegular(Rental rental) {
+    	
+    	double increase = 2;
+    	if (rental.getDaysRented() > 2) {
+    		increase += (rental.getDaysRented() - 2) * 1.5;
+    	}
+    	return increase;
+    }
+    
+    private double getIncreaseNewRelease(Rental rental) {
+    	
+    	return rental.getDaysRented() * 3;
+    }
+    
+    private double getIncreaseChildren(Rental rental) {
+    	
+    	double increase = 1.5;
+    	if (rental.getDaysRented() > 3) {
+    		increase += (rental.getDaysRented() - 3) * 1.5;
+    	}
+    	return increase;
+    }
+    
 }
