@@ -57,7 +57,7 @@ class SituationTest {
         c1.addRental(r2);
         
         //act
-        result = c1.statement();
+        result = c1.getFullInformation();
         
         //assert
         assertTrue(result.contains("Rental Record for joe"));

@@ -20,7 +20,7 @@ class Customer {
         return name;
     }
     
-    public String statement() {
+    public String getFullInformation() {
     	
         double totalAmount = 0;
         int frequentRenterPoints = 0;

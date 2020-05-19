@@ -30,7 +30,7 @@ public class Program {
         
         System.out.println("Let's get the Statement");
         
-        result = c1.statement();
+        result = c1.getFullInformation();
         
         System.out.println(result);
     }
