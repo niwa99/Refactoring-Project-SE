@@ -40,12 +40,12 @@ class Customer {
         	}
         	
         	//show figures for this rental
-        	result += C_TAB + rental.getMovie().getTitle()+ C_TAB + C_TAB + rental.getDaysRented() + C_TAB + String.valueOf(rentalAmount) + C_LINEBREAK;
+        	result += C_TAB + rental.getMovie().getTitle()+ C_TAB + C_TAB + rental.getDaysRented() + C_TAB + rentalAmount + C_LINEBREAK;
         	totalAmount += rentalAmount;
         };
         //add footer lines
-        result += "Amount owed is " + String.valueOf(totalAmount) + C_LINEBREAK;
-        result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
+        result += "Amount owed is " + totalAmount + C_LINEBREAK;
+        result += "You earned " + frequentRenterPoints + " frequent renter points";
         return result;
     }
 
