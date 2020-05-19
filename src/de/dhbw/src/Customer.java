@@ -87,16 +87,16 @@ class Customer {
     	return (rental.getMovie().getPriceCode() == PriceCode.NEW_RELEASE && rental.getDaysRented() > 1) ? true : false;
     }
     
-    private String getNewInformationOutputLine(String title, int days, double amount) {
-    	return getNewInformationOutputLine(title, String.valueOf(days), String.valueOf(amount));
-    }
-    
     private String getNewHeaderOutputLine() {
     	StringBuilder builder = new StringBuilder();
     	builder.append("Rental Record for ");
         builder.append(this.getName());
         builder.append(C_LINEBREAK);
         return builder.toString();
+    }
+    
+    private String getNewInformationOutputLine(String title, int days, double amount) {
+    	return getNewInformationOutputLine(title, String.valueOf(days), String.valueOf(amount));
     }
     
     private String getNewInformationOutputLine(String title, String days, String amount) {
